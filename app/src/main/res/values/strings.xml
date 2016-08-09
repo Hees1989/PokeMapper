@@ -7,4 +7,9 @@
     <string name="name">Voornaam</string>
     <string name="surname">Achternaam</string>
     <string name="register">Registreren</string>
+    <string name="add_marker">Marker toevoegen</string>
+    <string name="pick_location">Geef hieronder aan of het om een Pokéstop gaat of om een Pokémon.</string>
+    <string name="pokestop">Pokéstop</string>
+    <string name="pokemon">Pokémon</string>
+    <string name="action_settings">Action settings</string>
 </resources>

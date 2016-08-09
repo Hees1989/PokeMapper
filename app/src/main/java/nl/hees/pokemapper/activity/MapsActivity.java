@@ -3,6 +3,11 @@ package nl.hees.pokemapper.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -14,20 +19,46 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import nl.hees.pokemapper.R;
 import nl.hees.pokemapper.model.PokeMapperModel;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
+    private Toolbar myToolbar;
     private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
         initialize();
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_add_marker:
+                // User chose the "Add marker" item
+                Intent intent = new Intent(MapsActivity.this, AddActivity.class);
+                startActivity(intent);
+            case R.id.action_settings:
+                // User chose the "Settings" item
+                return true;
+            default:
+                // Action not recognized
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private boolean isUserLoggedIn() {
