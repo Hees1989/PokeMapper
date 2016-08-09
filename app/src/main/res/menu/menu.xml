@@ -7,6 +7,6 @@
         android:icon="@drawable/icon_add"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/action_settings"
-        android:title="@string/action_settings" />
+        android:id="@+id/action_logout"
+        android:title="@string/action_logout" />
 </menu>

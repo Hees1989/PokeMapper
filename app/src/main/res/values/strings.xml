@@ -12,4 +12,5 @@
     <string name="pokestop">Pokéstop</string>
     <string name="pokemon">Pokémon</string>
     <string name="action_settings">Action settings</string>
+    <string name="action_logout">Uitloggen</string>
 </resources>
