@@ -78,16 +78,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 // User chose the "Add marker" item
                 Intent addActivityIntent = new Intent(MapsActivity.this, AddActivity.class);
                 startActivity(addActivityIntent);
+                break;
             case R.id.action_logout:
                 // User chose the "Uitloggen" item
                 PokeMapperModel.getInstance().setCurrentUser(null);
                 Intent loginActivityIntent = new Intent(MapsActivity.this, LoginActivity.class);
                 startActivity(loginActivityIntent);
                 finish();
-            default:
-                // Action not recognized
-                return super.onOptionsItemSelected(item);
+                break;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     private boolean isUserLoggedIn() {
