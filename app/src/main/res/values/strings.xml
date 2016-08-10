@@ -13,4 +13,5 @@
     <string name="pokemon">Pokémon</string>
     <string name="action_settings">Action settings</string>
     <string name="action_logout">Uitloggen</string>
+    <string name="add">Toevoegen</string>
 </resources>
