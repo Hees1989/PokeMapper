@@ -4,20 +4,21 @@ package nl.hees.pokemapper.model;
  * Created by Jaimy on 5-8-2016.
  */
 public class Pokemon {
-    private int pokemonId;
+    private static int pokemonId = 1;
     private String name;
+    private int image;
 
-    public Pokemon(int pokemonId, String name) {
-        this.pokemonId = pokemonId;
+    public Pokemon(String name, int image) {
         this.name = name;
+        this.image = image;
     }
 
-    public int getPokemonId() {
+    public static int getPokemonId() {
         return pokemonId;
     }
 
-    public void setPokemonId(int pokemonId) {
-        this.pokemonId = pokemonId;
+    public static void setPokemonId(int pokemonId) {
+        Pokemon.pokemonId = pokemonId;
     }
 
     public String getName() {
@@ -26,5 +27,13 @@ public class Pokemon {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getImage() {
+        return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
     }
 }

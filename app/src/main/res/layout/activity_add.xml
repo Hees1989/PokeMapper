@@ -27,30 +27,34 @@
         android:layout_marginTop="40dp"
         android:text="@string/pick_location" />
 
-    <CheckBox
-        android:id="@+id/cbPokestop"
-        android:layout_width="wrap_content"
+    <RadioGroup
+        android:id="@+id/rgPickLocation"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_below="@+id/tvPickLocation"
-        android:layout_marginTop="10dp"
-        android:text="@string/pokestop" />
+        android:layout_marginTop="10dp">
 
-    <CheckBox
-        android:id="@+id/cbPokemon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/cbPokestop"
-        android:layout_marginTop="10dp"
-        android:text="@string/pokemon" />
+        <RadioButton
+            android:id="@+id/rbPokestop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pokestop" />
+
+        <RadioButton
+            android:id="@+id/rbPokemon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/pokemon" />
+
+    </RadioGroup>
 
     <Spinner
         android:id="@+id/spPokemon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/cbPokemon"
+        android:layout_below="@+id/rgPickLocation"
         android:layout_marginTop="10dp" />
 
     <Button

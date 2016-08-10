@@ -32,8 +32,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+
 import nl.hees.pokemapper.R;
 import nl.hees.pokemapper.model.PokeMapperModel;
+import nl.hees.pokemapper.model.Pokemon;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -46,10 +49,24 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Location mLastLocation;
     private Marker mCurrLocationMarker;
 
+    private ArrayList<Pokemon> pokemons = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        // @// TODO: 10-8-2016 Clean this up
+        pokemons.add(new Pokemon("Bulbasaur", R.drawable.icon_001));
+        pokemons.add(new Pokemon("Ivysaur", R.drawable.icon_002));
+        pokemons.add(new Pokemon("Venusaur", R.drawable.icon_003));
+        pokemons.add(new Pokemon("Charmander", R.drawable.icon_004));
+        pokemons.add(new Pokemon("Charmeleon", R.drawable.icon_005));
+        pokemons.add(new Pokemon("Charizard", R.drawable.icon_006));
+        pokemons.add(new Pokemon("Squirtle", R.drawable.icon_007));
+        pokemons.add(new Pokemon("Wartortle", R.drawable.icon_008));
+        pokemons.add(new Pokemon("Blastoise", R.drawable.icon_009));
+        pokemons.add(new Pokemon("Caterpie", R.drawable.icon_010));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission();
@@ -128,6 +145,27 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             buildGoogleApiClient();
             mMap.setMyLocationEnabled(true);
         }
+
+        LatLng latLng = new LatLng(52.092536, 6.157034);
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(latLng);
+        markerOptions.title(pokemons.get(4).getName());
+        markerOptions.icon(BitmapDescriptorFactory.fromResource(pokemons.get(4).getImage()));
+        mMap.addMarker(markerOptions);
+
+        LatLng latLng2 = new LatLng(52.263509, 6.166667);
+        MarkerOptions markerOptions2 = new MarkerOptions();
+        markerOptions2.position(latLng2);
+        markerOptions2.title(pokemons.get(6).getName());
+        markerOptions2.icon(BitmapDescriptorFactory.fromResource(pokemons.get(6).getImage()));
+        mMap.addMarker(markerOptions2);
+
+        LatLng latLng3 = new LatLng(52.264084, 6.167831);
+        MarkerOptions markerOptions3 = new MarkerOptions();
+        markerOptions3.position(latLng3);
+        markerOptions3.title(pokemons.get(2).getName());
+        markerOptions3.icon(BitmapDescriptorFactory.fromResource(pokemons.get(2).getImage()));
+        mMap.addMarker(markerOptions3);
     }
 
     protected synchronized void buildGoogleApiClient() {
