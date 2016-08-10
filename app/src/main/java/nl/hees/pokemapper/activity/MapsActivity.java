@@ -43,6 +43,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
 
+    public static final String LOCATION = "LOCATION";
     private GoogleMap mMap;
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
@@ -94,6 +95,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             case R.id.action_add_marker:
                 // User chose the "Add marker" item
                 Intent addActivityIntent = new Intent(MapsActivity.this, AddActivity.class);
+                addActivityIntent.putExtra(LOCATION, mLastLocation);
                 startActivity(addActivityIntent);
                 break;
             case R.id.action_logout:

@@ -27,11 +27,4 @@ public class RegisterRequest extends StringRequest {
     public Map<String, String> getParams() {
         return params;
     }
-
-    /*@Override
-    public Map<String, String> getHeaders() throws AuthFailureError {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Content-Type", "application/json");
-        return headers;
-    }*/
 }
