@@ -16,7 +16,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:src="@drawable/icon_pokemapper"/>
+        android:src="@drawable/icon_pokemapper"
+        android:contentDescription="@string/mapper_logo"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,10 +27,11 @@
         android:layout_below="@+id/iv_icon_pokemon"
         android:layout_alignParentStart="true"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp" />
+        android:layout_marginTop="0dp" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginEnd="40dp"
         android:layout_height="wrap_content"
         android:id="@+id/etUsername"
         android:layout_below="@+id/tvUsername"
@@ -44,9 +46,11 @@
         android:layout_alignStart="@+id/etUsername" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginEnd="40dp"
         android:layout_height="wrap_content"
         android:id="@+id/etPassword"
+        android:inputType="textPassword"
         android:layout_below="@+id/tvPassword"
         android:layout_alignStart="@+id/tvPassword" />
 
@@ -59,9 +63,11 @@
         android:layout_alignStart="@+id/etPassword" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginEnd="40dp"
         android:layout_height="wrap_content"
         android:id="@+id/etPassword2"
+        android:inputType="textPassword"
         android:layout_below="@+id/tvPassword2"
         android:layout_alignStart="@+id/tvPassword2" />
 
@@ -74,7 +80,8 @@
         android:layout_alignStart="@+id/etPassword2" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginEnd="40dp"
         android:layout_height="wrap_content"
         android:id="@+id/etName"
         android:layout_below="@+id/tvName"
@@ -89,7 +96,8 @@
         android:layout_alignStart="@+id/etName" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginEnd="40dp"
         android:layout_height="wrap_content"
         android:id="@+id/etSurname"
         android:layout_below="@+id/tvSurname"
@@ -101,6 +109,9 @@
         android:text="@string/register"
         android:id="@+id/btnRegister"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/btn_border"
+        android:backgroundTint="#07e2b0"
+        android:padding="10dp"/>
 
 </RelativeLayout>

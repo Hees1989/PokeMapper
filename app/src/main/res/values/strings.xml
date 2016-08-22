@@ -14,4 +14,5 @@
     <string name="action_settings">Action settings</string>
     <string name="action_logout">Uitloggen</string>
     <string name="add">Toevoegen</string>
+    <string name="mapper_logo">PokéMapper logo</string>
 </resources>
