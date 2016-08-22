@@ -94,7 +94,6 @@ public class AddActivity extends AppCompatActivity implements AdapterView.OnItem
             @Override
             public void onResponse(String response) {
                 try {
-                    Log.e("WHAT pokestop?: ", response);
                     JSONObject jsonObject = new JSONObject(response);
                     boolean success = jsonObject.getBoolean("success");
                     if (success) {
@@ -119,7 +118,6 @@ public class AddActivity extends AppCompatActivity implements AdapterView.OnItem
             @Override
             public void onResponse(String response) {
                 try {
-                    Log.e("WHAT pokemon?: ", response);
                     JSONObject jsonObject = new JSONObject(response);
                     boolean success = jsonObject.getBoolean("success");
                     if (success) {

@@ -18,6 +18,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -31,6 +35,10 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -148,26 +156,67 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             mMap.setMyLocationEnabled(true);
         }
 
-        LatLng latLng = new LatLng(52.092536, 6.157034);
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(latLng);
-        markerOptions.title(pokemons.get(4).getName());
-        markerOptions.icon(BitmapDescriptorFactory.fromResource(pokemons.get(4).getImage()));
-        mMap.addMarker(markerOptions);
+        loadPokemonMarkers();
+        loadPokestopMarkers();
 
-        LatLng latLng2 = new LatLng(52.263509, 6.166667);
-        MarkerOptions markerOptions2 = new MarkerOptions();
-        markerOptions2.position(latLng2);
-        markerOptions2.title(pokemons.get(6).getName());
-        markerOptions2.icon(BitmapDescriptorFactory.fromResource(pokemons.get(6).getImage()));
-        mMap.addMarker(markerOptions2);
+    }
 
-        LatLng latLng3 = new LatLng(52.264084, 6.167831);
-        MarkerOptions markerOptions3 = new MarkerOptions();
-        markerOptions3.position(latLng3);
-        markerOptions3.title(pokemons.get(2).getName());
-        markerOptions3.icon(BitmapDescriptorFactory.fromResource(pokemons.get(2).getImage()));
-        mMap.addMarker(markerOptions3);
+    private void loadPokemonMarkers() {
+        String url = "http://pokemapper.net16.net/LoadPokemon.php";
+
+        Response.Listener<String> listener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray encounters = new JSONArray(response);
+
+                    for (int i = 0; i < encounters.length(); i++) {
+                        JSONObject jo = encounters.getJSONObject(i);
+                        LatLng latLng = new LatLng(Double.parseDouble(jo.getString("latitude")), Double.parseDouble(jo.getString("longitude")));
+                        MarkerOptions markerOptions = new MarkerOptions();
+                        markerOptions.position(latLng);
+                        markerOptions.title(pokemons.get(Integer.parseInt(jo.getString("pokemonId"))).getName());
+                        markerOptions.icon(BitmapDescriptorFactory.fromResource(pokemons.get(Integer.parseInt(jo.getString("pokemonId"))).getImage()));
+                        mMap.addMarker(markerOptions);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        StringRequest stringRequest = new StringRequest(url, listener, null);
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(stringRequest);
+    }
+
+    private void loadPokestopMarkers() {
+        String url = "http://pokemapper.net16.net/LoadPokestop.php";
+
+        Response.Listener<String> listener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray pokestops = new JSONArray(response);
+
+                    for (int i = 0; i < pokestops.length(); i++) {
+                        JSONObject jo = pokestops.getJSONObject(i);
+                        LatLng latLng = new LatLng(Double.parseDouble(jo.getString("latitude")), Double.parseDouble(jo.getString("longitude")));
+                        MarkerOptions markerOptions = new MarkerOptions();
+                        markerOptions.position(latLng);
+                        markerOptions.title("Pokéstop");
+                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.pokestop));
+                        mMap.addMarker(markerOptions);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        StringRequest stringRequest = new StringRequest(url, listener, null);
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(stringRequest);
     }
 
     protected synchronized void buildGoogleApiClient() {
