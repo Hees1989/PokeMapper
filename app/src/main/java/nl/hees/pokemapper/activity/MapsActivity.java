@@ -65,17 +65,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        // @// TODO: 10-8-2016 Clean this up
-        pokemons.add(new Pokemon("Bulbasaur", R.drawable.icon_001));
-        pokemons.add(new Pokemon("Ivysaur", R.drawable.icon_002));
-        pokemons.add(new Pokemon("Venusaur", R.drawable.icon_003));
-        pokemons.add(new Pokemon("Charmander", R.drawable.icon_004));
-        pokemons.add(new Pokemon("Charmeleon", R.drawable.icon_005));
-        pokemons.add(new Pokemon("Charizard", R.drawable.icon_006));
-        pokemons.add(new Pokemon("Squirtle", R.drawable.icon_007));
-        pokemons.add(new Pokemon("Wartortle", R.drawable.icon_008));
-        pokemons.add(new Pokemon("Blastoise", R.drawable.icon_009));
-        pokemons.add(new Pokemon("Caterpie", R.drawable.icon_010));
+        addPokemons();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission();
@@ -246,7 +236,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onLocationChanged(Location location) {
-        // @// TODO: 9-8-2016 Use this method or?
 
         mLastLocation = location;
         if (mCurrLocationMarker != null) {
@@ -311,5 +300,68 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 return;
             }
         }
+    }
+
+    private void addPokemons() {
+        pokemons.add(new Pokemon("Bulbasaur", R.drawable.icon_001));
+        pokemons.add(new Pokemon("Ivysaur", R.drawable.icon_002));
+        pokemons.add(new Pokemon("Venusaur", R.drawable.icon_003));
+        pokemons.add(new Pokemon("Charmander", R.drawable.icon_004));
+        pokemons.add(new Pokemon("Charmeleon", R.drawable.icon_005));
+        pokemons.add(new Pokemon("Charizard", R.drawable.icon_006));
+        pokemons.add(new Pokemon("Squirtle", R.drawable.icon_007));
+        pokemons.add(new Pokemon("Wartortle", R.drawable.icon_008));
+        pokemons.add(new Pokemon("Blastoise", R.drawable.icon_009));
+        pokemons.add(new Pokemon("Caterpie", R.drawable.icon_010));
+        pokemons.add(new Pokemon("Metapod", R.drawable.icon_011));
+        pokemons.add(new Pokemon("Butterfree", R.drawable.icon_012));
+        pokemons.add(new Pokemon("Weedle", R.drawable.icon_013));
+        pokemons.add(new Pokemon("Kakuna", R.drawable.icon_014));
+        pokemons.add(new Pokemon("Beedrill", R.drawable.icon_015));
+        pokemons.add(new Pokemon("Pidgey", R.drawable.icon_016));
+        pokemons.add(new Pokemon("Pidgeotto", R.drawable.icon_017));
+        pokemons.add(new Pokemon("Pidgeot", R.drawable.icon_018));
+        pokemons.add(new Pokemon("Rattata", R.drawable.icon_019));
+        pokemons.add(new Pokemon("Raticate", R.drawable.icon_020));
+        pokemons.add(new Pokemon("Spearow", R.drawable.icon_021));
+        pokemons.add(new Pokemon("Fearow", R.drawable.icon_022));
+        pokemons.add(new Pokemon("Ekans", R.drawable.icon_023));
+        pokemons.add(new Pokemon("Arbok", R.drawable.icon_024));
+        pokemons.add(new Pokemon("Pikachu", R.drawable.icon_025));
+        pokemons.add(new Pokemon("Raichu", R.drawable.icon_026));
+        pokemons.add(new Pokemon("Sandshrew", R.drawable.icon_027));
+        pokemons.add(new Pokemon("Sandslash", R.drawable.icon_028));
+        pokemons.add(new Pokemon("Nidoran", R.drawable.icon_029));
+        pokemons.add(new Pokemon("Nidorina", R.drawable.icon_030));
+        pokemons.add(new Pokemon("Nidoqueen", R.drawable.icon_031));
+        pokemons.add(new Pokemon("Nidoran", R.drawable.icon_032));
+        pokemons.add(new Pokemon("Nidorino", R.drawable.icon_033));
+        pokemons.add(new Pokemon("Nidoking", R.drawable.icon_034));
+        pokemons.add(new Pokemon("Clefairy", R.drawable.icon_035));
+        pokemons.add(new Pokemon("Clefable", R.drawable.icon_036));
+        pokemons.add(new Pokemon("Vulpix", R.drawable.icon_037));
+        pokemons.add(new Pokemon("Ninetales", R.drawable.icon_038));
+        pokemons.add(new Pokemon("Jigglypuff", R.drawable.icon_039));
+        pokemons.add(new Pokemon("Wigglytuff", R.drawable.icon_040));
+        pokemons.add(new Pokemon("Zubat", R.drawable.icon_041));
+        pokemons.add(new Pokemon("Golbat", R.drawable.icon_042));
+        pokemons.add(new Pokemon("Oddish", R.drawable.icon_043));
+        pokemons.add(new Pokemon("Gloom", R.drawable.icon_044));
+        pokemons.add(new Pokemon("Vileplume", R.drawable.icon_045));
+        pokemons.add(new Pokemon("Paras", R.drawable.icon_046));
+        pokemons.add(new Pokemon("Parasect", R.drawable.icon_047));
+        pokemons.add(new Pokemon("Venonat", R.drawable.icon_048));
+        pokemons.add(new Pokemon("Venomoth", R.drawable.icon_049));
+        pokemons.add(new Pokemon("Diglett", R.drawable.icon_050));
+        pokemons.add(new Pokemon("Dugtrio", R.drawable.icon_051));
+        pokemons.add(new Pokemon("Meowth", R.drawable.icon_052));
+        pokemons.add(new Pokemon("Persian", R.drawable.icon_053));
+        pokemons.add(new Pokemon("Psyduck", R.drawable.icon_054));
+        pokemons.add(new Pokemon("Golduck", R.drawable.icon_055));
+        pokemons.add(new Pokemon("Mankey", R.drawable.icon_056));
+        pokemons.add(new Pokemon("Primeape", R.drawable.icon_057));
+        pokemons.add(new Pokemon("Growlithe", R.drawable.icon_058));
+        pokemons.add(new Pokemon("Arcanine", R.drawable.icon_059));
+        pokemons.add(new Pokemon("Poliwag", R.drawable.icon_060));
     }
 }
