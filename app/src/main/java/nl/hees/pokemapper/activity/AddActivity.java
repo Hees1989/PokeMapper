@@ -2,8 +2,10 @@ package nl.hees.pokemapper.activity;
 
 import android.content.Intent;
 import android.location.Location;
+import android.os.Debug;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -20,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import nl.hees.pokemapper.R;
+import nl.hees.pokemapper.controller.AddPokemonRequest;
 import nl.hees.pokemapper.controller.AddPokestopRequest;
 import nl.hees.pokemapper.view.CustomAdapter;
 
@@ -76,7 +79,8 @@ public class AddActivity extends AppCompatActivity implements AdapterView.OnItem
                         addPokestop(lat, lng);
                         break;
                     case R.id.rbPokemon:
-                        addPokemon(lat, lng);
+                        int pokemonId = spPokemon.getSelectedItemPosition();
+                        addPokemon(lat, lng, pokemonId);
                         break;
                     default:
                         Toast.makeText(AddActivity.this, "U heeft nog geen type locatie geselecteerd.", Toast.LENGTH_SHORT).show();
@@ -90,6 +94,7 @@ public class AddActivity extends AppCompatActivity implements AdapterView.OnItem
             @Override
             public void onResponse(String response) {
                 try {
+                    Log.e("WHAT pokestop?: ", response);
                     JSONObject jsonObject = new JSONObject(response);
                     boolean success = jsonObject.getBoolean("success");
                     if (success) {
@@ -109,8 +114,28 @@ public class AddActivity extends AppCompatActivity implements AdapterView.OnItem
         queue.add(addPokestopRequest);
     }
 
-    private void addPokemon(double lat, double lng) {
-
+    private void addPokemon(double lat, double lng, int pokemonId) {
+        Response.Listener<String> listener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    Log.e("WHAT pokemon?: ", response);
+                    JSONObject jsonObject = new JSONObject(response);
+                    boolean success = jsonObject.getBoolean("success");
+                    if (success) {
+                        Intent intent = new Intent(AddActivity.this, MapsActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(AddActivity.this, "Toevoegen is mislukt. Probeer het opnieuw.", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        AddPokemonRequest addPokemonRequest = new AddPokemonRequest(lat, lng, pokemonId, listener);
+        RequestQueue queue = Volley.newRequestQueue(AddActivity.this);
+        queue.add(addPokemonRequest);
     }
 
     @Override
